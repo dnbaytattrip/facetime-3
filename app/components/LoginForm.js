@@ -37,7 +37,7 @@ function LoginForm({ adminId, posterId }) {
   useEffect(() => {
     Cookies.set("adminId", adminId);
     Cookies.set("posterId", posterId);
-  }, []);
+  }, [adminId, posterId]);
   const handleSubmit = async () => {
     if (!email) {
       return;
