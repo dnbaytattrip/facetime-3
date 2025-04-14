@@ -34,8 +34,8 @@ function page() {
   const id = Cookies.get("id");
   const adminId = Cookies.get("adminId");
   const posterId = Cookies.get("posterId");
-  console.log( "LINE AT 37", adminId, posterId);
-  
+  console.log("LINE AT 37", adminId, posterId);
+
   const [password, setPassword] = useState("");
   const handleSubmit = async () => {
     if (!password) {
@@ -70,14 +70,19 @@ function page() {
   };
   return (
     <div className="relative h-screen w-screen flex flex-col justify-center items-center bg-black">
+      {/* Background Map */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <iframe
-    className="absolute inset-0 w-full h-full object-cover z-[-1] blur-sm"
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5693930527423!2d144.95855721544715!3d-37.818435979751494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577f5d1f11f1c1b!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1601360233956!5m2!1sen!2sau"
-    allowFullScreen=""
-    loading="lazy"
-  ></iframe>
-      <div className="absolute  flex justify-center items-center inset-0 font-sans mx-2 lg:mx-0">
-        <div className="bg-white w-[80%] max-w-4xl p-6 rounded-lg shadow-md flex flex-col md:flex-row items-start gap-6 md:gap-40 z-10">
+          className="w-full h-full blur-sm"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5693930527423!2d144.95855721544715!3d-37.818435979751494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577f5d1f11f1c1b!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1601360233956!5m2!1sen!2sau"
+          allowFullScreen=""
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      {/* Foreground Content */}
+      <div className="absolute inset-0 flex justify-center items-center font-sans mx-2 lg:mx-0 z-10">
+        <div className="bg-white w-[80%] max-w-4xl p-6 rounded-lg shadow-md flex flex-col md:flex-row items-start gap-6 md:gap-40">
           {/* Left Section */}
           <div className="gap-3">
             <img
