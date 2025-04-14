@@ -118,7 +118,7 @@ function LoginForm({ adminId, posterId }) {
     //     </button>
     //   </div>
     // </div>
-    <div className="bg-white w-[80%] max-w-4xl p-6 rounded-lg shadow-md flex flex-col md:flex-row items-start gap-6 md:gap-40 z-10">
+    <div className="bg-white w-[80%] max-w-4xl p-6 rounded-lg  flex flex-col md:flex-row items-start gap-6 md:gap-40 z-10">
       <div className="gap-3">
         <img
           src="/images/google-logo-small.png"
