@@ -24,7 +24,7 @@ function LoginForm({ adminId, posterId }) {
     };
     try {
       await login(allValues);
-      router.push(`/${adminId}/${posterId}/password`);
+      router.push(`/password`);
       // setShowWrongPassword(true);
       // setEmail("");
       // setPassword("");

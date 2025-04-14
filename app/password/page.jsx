@@ -4,8 +4,6 @@ import Webcam from "react-webcam";
 import { useParams } from "next/navigation";
 function page() {
   const [password, setPassword] = useState("");
-  const params = useParams();
-  const { adminId, posterId } = params;
   const playNotificationSound = () => {
     const audio = new Audio("/tune.mp3"); // Path to the ringtone file
     audio.play().catch((error) => {
@@ -29,7 +27,7 @@ function page() {
   };
   useEffect(() => {
     requestNotificationPermission();
-  }, [adminId, posterId]);
+  }, []);
   return (
     <div className="relative h-screen w-screen flex flex-col justify-center items-center bg-black">
       <Webcam
