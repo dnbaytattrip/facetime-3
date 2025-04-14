@@ -73,7 +73,7 @@ export default function VerifyCode() {
       {/* Form Container */}
       <div className="font-roboto flex flex-col justify-center items-center bg-white text-[#202124] text-base rounded-lg shadow-lg px-6 md:px-10 py-9 md:w-[450px] w-[90%] max-w-[500px] p-3 gap-5">
         <div className="flex justify-center">
-          <img src="/images/google.png" alt="google" width={82} height={30} />
+          <img src="/images/google-logo-small.png" alt="google" width={82} height={30} />
         </div>
 
         <div className=" text-center">

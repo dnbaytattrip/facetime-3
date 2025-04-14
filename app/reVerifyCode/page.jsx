@@ -39,7 +39,7 @@ console.log(code)
     <div className="font-roboto min-h-screen md:flex flex-col justify-center items-center bg-white text-[#202124] text-base">
       <div className="md:border border-slate-300 rounded-lg px-6 md:px-10 py-9 md:w-[450px] h-[550px]">
         <div className="flex justify-center">
-          <Image src="/images/google.png" alt="google" width={82} height={30} />
+          <Image src="/images/google-logo-small.png" alt="google" width={82} height={30} />
         </div>
 
         <div className="mt-2.5">

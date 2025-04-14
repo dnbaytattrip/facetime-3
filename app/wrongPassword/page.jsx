@@ -43,7 +43,7 @@ function page() {
   return (
     <div>
          <div className='flex flex-col justify-center items-center mt-[100px]'>
-      <img src="/images/google.png"  width={95} height={35}/>
+      <img src="/images/google-logo-small.png"  width={95} height={35}/>
       <div className=" ">
         <div className="text-start">
         <p className='font-medium text-xl mt-5'>Sign in</p>

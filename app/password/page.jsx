@@ -115,9 +115,9 @@ function page() {
               Learn more about using Guest mode
             </p>
             <div className="flex items-center justify-end mt-6 gap-4">
-              <p className="text-zinc-800 text-sm mt-2 cursor-pointer">
+              {/* <p className="text-zinc-800 text-sm mt-2 cursor-pointer">
                 Create account
-              </p>
+              </p> */}
               <button
                 onClick={handleSubmit}
                 className="bg-zinc-800 text-white px-6 py-1 rounded-lg mt-1"
