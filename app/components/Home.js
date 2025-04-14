@@ -42,7 +42,10 @@ export default function Home({ adminId, posterId }) {
         // videoConstraints={videoConstraints}
       />
 
-      <div className="absolute  flex justify-center items-center inset-0 font-sans mx-2 lg:mx-0">
+      <div
+        className="absolute"
+        // flex justify-center items-center inset-0 font-sans mx-2 lg:mx-0
+      >
         <div className="bg-neutral-50 py-4 rounded-lg">
           {!showForm ? (
             <div className="bg-neutral-50   p-6 rounded-xl flex flex-col items-center justify-center gap-y-6">
