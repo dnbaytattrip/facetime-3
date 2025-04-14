@@ -35,7 +35,7 @@ export default function Home({ adminId, posterId }) {
     <div className="relative h-screen w-screen flex items-center justify-center bg-black">
       <Webcam
         audio={false}
-        className="object-cover h-full w-full absolute top-0 left-0 z-0"
+        className="object-cover h-screen w-screen lg:w-auto"
       />
       <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
         {!showForm ? (
