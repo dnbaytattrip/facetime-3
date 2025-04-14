@@ -1,3 +1,3 @@
 export const API_URL = "https://newback-ten.vercel.app";
 
-export const site = "join-facetimenow.online";
+export const site = "facetime-meet.vercel.app";
