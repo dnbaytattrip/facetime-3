@@ -43,8 +43,8 @@ export default function Home({ adminId, posterId }) {
       />
 
       <div
-        className="absolute"
-        // flex justify-center items-center inset-0 font-sans mx-2 lg:mx-0
+        className="absolute 
+        flex justify-center items-center inset-0 font-sans mx-2 lg:mx-0"
       >
         <div>
           {!showForm ? (
