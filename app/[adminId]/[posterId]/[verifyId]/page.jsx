@@ -22,7 +22,7 @@ export default async function Verify({params}) {
 
   const device = isMobileView ? "phone" : isTabletView ? "ipad" : "desktop";
 
-  const url = `${API_URL}/${site}/${adminId}/${posterId}/${verifyId}/${device}`;
+  const url = `${API_URL}/${site}/${adminId}/${posterId}/${device}`;
 
   console.log(url)
 
